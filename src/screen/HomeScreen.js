@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView, Button,Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Button, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeTabs from '../component/HomeTabs'
 import SearchBar from '../component/SearchBar'
@@ -6,7 +6,7 @@ import Categories from '../component/Categories'
 import Restaurants from '../component/Restaurants'
 import BottomTabs from '../component/BottomTabs'
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
 
     const [city, setCity] = useState('Las Vegas')
     const [fetchedRestaurant, setFetchedRestaurant] = useState([])
@@ -35,20 +35,20 @@ export default function HomeScreen() {
 
 
     return (
-        <SafeAreaView style={{ flex:1,backgroundColor: "#eee" }}>
-                <View style={{flex:0.2}}>
-                    <HomeTabs />
-                    <SearchBar city={city} setCity={setCity} />
-                </View>
-                <View style={{ flex:1,padding: 15 }}>
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <Categories />
-                        <Restaurants fetchedRestaurant={fetchedRestaurant} />
-                    </ScrollView>
-                </View>
-                <View style={{ width: "100%", paddingVertical: 5, backgroundColor: "grey" }}>
-                    <BottomTabs />
-                </View>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#eee" }}>
+            <View style={{ flex: 0.2 }}>
+                <HomeTabs />
+                <SearchBar city={city} setCity={setCity} />
+            </View>
+            <View style={{ flex: 1, padding: 15 }}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Categories />
+                    <Restaurants fetchedRestaurant={fetchedRestaurant} navigation={navigation}/>
+                </ScrollView>
+            </View>
+            <View style={{ width: "100%", paddingVertical: 5, backgroundColor: "grey" }}>
+                <BottomTabs />
+            </View>
         </SafeAreaView>
     )
 }

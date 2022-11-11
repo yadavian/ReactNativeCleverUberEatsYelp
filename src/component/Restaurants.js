@@ -2,17 +2,21 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 
-export default function Restaurants({ fetchedRestaurant }) {
+export default function Restaurants({ navigation, fetchedRestaurant }) {
   return (
     <>
       {fetchedRestaurant?.map((restaurant, index) => {
         return (
-          <TouchableOpacity key={index} activeOpacity={0.5} style={{ marginBottom: 30 }}>
+          <TouchableOpacity
+            key={index}
+            activeOpacity={0.5}
+            style={{ marginBottom: 30 }}
+            onPress={() => navigation.navigate('RestaurantDetailsScreen', {restaurant})}>
             <View style={{ Top: 10, padding: 15, backgroundColor: 'white' }}>
               <ResturantImage restaurant={restaurant} />
               <ResturantInfo restaurant={restaurant} />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity >
         )
       })}
 
